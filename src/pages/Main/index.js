@@ -1,8 +1,20 @@
 import React, { useState, useCallback } from 'react';
-import { FaGithub, FaPlus, FaSpinner } from 'react-icons/fa';
+import {
+    FaGithub,
+    FaPlus,
+    FaSpinner,
+    FaBars,
+    FaTrash,
+} from 'react-icons/fa';
 
 import api from '../../services/api';
-import { Container, Form, SubmitButton } from './styles';
+import {
+    Container,
+    Form,
+    SubmitButton,
+    List,
+    DeleteButton
+} from './styles';
 
 const Main = () => {
     const [repo, setRepo] = useState('');
@@ -34,6 +46,11 @@ const Main = () => {
         submit();
     }, [repo, repositoryList]);
 
+    const handleDelete = useCallback(repoName => {
+        const filteredRepository = repositoryList.filter(repo => repo.name !== repoName);
+        setRepositoryList(filteredRepository);
+    }, [repositoryList]);
+
     return (
       <Container>
           <h1>
@@ -56,6 +73,23 @@ const Main = () => {
                   }
               </SubmitButton>
           </Form>
+
+          <List>
+              {repositoryList.map(repo => (
+                  <li key={ repo.name }>
+                      <span>
+                          <DeleteButton onClick={ () => handleDelete(repo.name) }>
+                              <FaTrash size={ 14 } />
+                          </DeleteButton>
+                          { repo.name }
+                      </span>
+
+                      <a href='#'>
+                          <FaBars size={ 20 } />
+                      </a>
+                  </li>
+              ))}
+          </List>
       </Container>
    );
 };

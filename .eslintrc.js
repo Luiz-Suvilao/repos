@@ -18,9 +18,10 @@ module.exports = {
   },
   plugins: ['react', 'prettier', 'eslint-plugin-prettier'],
   rules: {
+    "no-unused-vars": ["warn", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
     'react/jsx-filename-extension': ['warn', { extensions: ['.js', '.jsx'] }],
     'import/prefer-default-export': 'off',
-    'jsx-quotes': ['error', 'prefer-single'],
-    semi: ['error', 'always'],
+    'jsx-quotes': ['warn', 'prefer-single'],
+     semi: ['error', 'always'],
   },
 };

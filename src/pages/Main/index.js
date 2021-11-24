@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import {
     FaGithub,
     FaPlus,
@@ -110,9 +111,9 @@ const Main = () => {
                           { repo.name }
                       </span>
 
-                      <a href='#'>
+                      <Link to={ `repository/${encodeURIComponent(repo.name)}` }>
                           <FaBars size={ 20 } />
-                      </a>
+                      </Link>
                   </li>
               ))}
           </List>

@@ -1,8 +1,12 @@
 import React from 'react';
+import { useParams } from 'react-router';
 
 const Repository = () => {
+    const {repositoryName} = useParams();
     return (
-        <h1>This is a Repositorio component</h1>
+        <h1 style={{color: '#fff'}}>
+            {repositoryName}
+        </h1>
     );
 };
 

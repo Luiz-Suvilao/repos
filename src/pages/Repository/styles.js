@@ -7,6 +7,10 @@ export const Loading = styled.div`
   justify-content: center;
   height: 100vh;
   color: #fff;
+  
+  h1 {
+    display: flex;
+  }
 `;
 
 export const Container = styled.div`

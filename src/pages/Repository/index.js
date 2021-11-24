@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { FaArrowLeft } from 'react-icons/fa';
 
+import LoadingDots from '../../components/LoadingDots';
+
 import api from '../../services/api';
 
 import {
@@ -39,7 +41,7 @@ const Repository = () => {
     if (loading) {
        return (
            <Loading>
-               <h1>Loading...</h1>
+               <h1>Loading <LoadingDots dotsColor='#fff' /></h1>
            </Loading>
        );
     }

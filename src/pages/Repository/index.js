@@ -11,6 +11,7 @@ import {
     Loading,
     BackButton,
     Owner,
+    IssuesList
 } from './styles';
 
 const Repository = () => {
@@ -37,7 +38,7 @@ const Repository = () => {
             setLoading(false);
         })();
     }, [repositoryName]);
-    console.log(repository, issues, loading);
+
     if (loading) {
        return (
            <Loading>
@@ -67,6 +68,42 @@ const Repository = () => {
                 <h1>{ name }</h1>
                 <p>{ description }</p>
             </Owner>
+
+            <IssuesList>
+                {issues.map(issue => {
+                    const {
+                        user: { avatar_url, login },
+                        html_url,
+                        title,
+                        labels
+                    } = issue;
+
+                    return (
+                        <li key={ String(issue.id) }>
+                            <img
+                                src={ avatar_url }
+                                alt={ login }
+                            />
+
+                            <div>
+                                <strong>
+                                    <a href={ html_url }>
+                                        { title }
+                                    </a>
+
+                                    {labels.length && labels.map(label => (
+                                        <span key={ String(label.id) }>
+                                            { label.name }
+                                        </span>
+                                    ))}
+                                </strong>
+
+                                <p>{ login }</p>
+                            </div>
+                        </li>
+                    );
+                })}
+            </IssuesList>
         </Container>
     );
 };

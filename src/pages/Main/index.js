@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import {
     FaGithub,
     FaPlus,
@@ -21,6 +21,17 @@ const Main = () => {
     const [repositoryList, setRepositoryList] = useState([]);
     const [loading, setLoading] = useState(false);
     const [hasError, setHasError] = useState(null);
+
+    useEffect(() => {
+        const repoStorage = localStorage.getItem('allRepos');
+        if (repoStorage) {
+            setRepositoryList(JSON.parse(repoStorage));
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('allRepos', JSON.stringify(repositoryList));
+    }, [repositoryList]);
 
     const handleSubmit = useCallback(e => {
         e.preventDefault();

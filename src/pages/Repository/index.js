@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { FaArrowLeft } from 'react-icons/fa';
+import { FaArrowLeft, FaSadCry } from 'react-icons/fa';
 
 import LoadingDots from '../../components/LoadingDots';
+import filters from '../../utils/filters';
 
 import api from '../../services/api';
 
@@ -11,6 +12,7 @@ import {
     Loading,
     BackButton,
     Owner,
+    FilterList,
     IssuesList,
     PageActions
 } from './styles';
@@ -20,6 +22,7 @@ const Repository = () => {
     const [issues, setIssues] = useState([]);
     const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(1);
+    const [filterIndex, setFilterIndex] = useState(0);
 
     const { repositoryName } = useParams();
 
@@ -29,7 +32,7 @@ const Repository = () => {
                 api.get(`/repos/${repositoryName}`),
                 api.get(`/repos/${repositoryName}/issues`, {
                     params: {
-                        state: 'open',
+                        state: filters.find(filter => filter.active).state,
                         per_page: 5
                     }
                 })
@@ -45,7 +48,7 @@ const Repository = () => {
         (async function loadNewIssues() {
             const repositoryData = await api.get(`/repos/${repositoryName}/issues`, {
                 params: {
-                    state: 'open',
+                    state: filters[filterIndex].state,
                     page,
                     per_page: 5
                 },
@@ -53,7 +56,7 @@ const Repository = () => {
 
             setIssues(repositoryData.data);
         })();
-    }, [repositoryName, page]);
+    }, [filterIndex, filters, repositoryName, page]);
 
     if (loading) {
        return (
@@ -85,7 +88,25 @@ const Repository = () => {
                 <p>{ description }</p>
             </Owner>
 
+            <FilterList active={ filterIndex }>
+                {filters.map((filter, index) => (
+                    <button
+                        disabled={ issues.length < 1 }
+                        key={ index }
+                        onClick={ () => setFilterIndex(index) }
+                    >
+                        { filter.label }
+                    </button>
+                ))}
+            </FilterList>
+
             <IssuesList>
+                {issues.length < 1 && (
+                    <h2>
+                        No issues found
+                        <FaSadCry size={ 25 } />
+                    </h2>
+                )}
                 {issues.map(issue => {
                     const {
                         user: { avatar_url, login },
@@ -127,14 +148,15 @@ const Repository = () => {
                     type='button'
                     onClick={ () => setPage(page - 1) }
                 >
-                    Voltar
+                    Previous
                 </button>
 
                 <button
+                    disabled={ issues.length < 1 }
                     type='button'
                     onClick={ () => setPage(page + 1) }
                 >
-                    Avançar
+                    Next
                 </button>
             </PageActions>
         </Container>

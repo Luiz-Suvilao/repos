@@ -31,6 +31,16 @@ export const Form = styled.form `
     padding: 10px 15px;
     border-radius: 4px;
     font-size: 17px;
+    transition: all 0.7s;
+    
+    &::placeholder {
+      color: ${ props => (props.hasError ? '#b53737' : '#ccc') };
+    }
+  }
+  
+  button {
+    transition: all 0.7s;
+    background: ${ props => props.hasError ? '#b53737' : '#0d2636' };
   }
 `;
 
@@ -47,7 +57,6 @@ export const SubmitButton = styled.button.attrs(props => ({
     type: 'submit',
     disabled: props.isLoading
 }))`
-  background: #0d2636;
   border: 0;
   border-radius: 4px;
   margin-left: 10px;

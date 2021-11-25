@@ -11,13 +11,15 @@ import {
     Loading,
     BackButton,
     Owner,
-    IssuesList
+    IssuesList,
+    PageActions
 } from './styles';
 
 const Repository = () => {
     const [repository, setRepository] = useState({});
     const [issues, setIssues] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [page, setPage] = useState(1);
 
     const { repositoryName } = useParams();
 
@@ -38,6 +40,20 @@ const Repository = () => {
             setLoading(false);
         })();
     }, [repositoryName]);
+
+    useEffect(() => {
+        (async function loadNewIssues() {
+            const repositoryData = await api.get(`/repos/${repositoryName}/issues`, {
+                params: {
+                    state: 'open',
+                    page,
+                    per_page: 5
+                },
+            });
+
+            setIssues(repositoryData.data);
+        })();
+    }, [repositoryName, page]);
 
     if (loading) {
        return (
@@ -104,6 +120,23 @@ const Repository = () => {
                     );
                 })}
             </IssuesList>
+
+            <PageActions>
+                <button
+                    disabled={ page <= 1 }
+                    type='button'
+                    onClick={ () => setPage(page - 1) }
+                >
+                    Voltar
+                </button>
+
+                <button
+                    type='button'
+                    onClick={ () => setPage(page + 1) }
+                >
+                    Avançar
+                </button>
+            </PageActions>
         </Container>
     );
 };

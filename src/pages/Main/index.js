@@ -37,7 +37,7 @@ const Main = () => {
     const handleSubmit = useCallback(e => {
         e.preventDefault();
 
-        async function submit() {
+        (async function submit() {
             setLoading(true);
             setHasError(null);
 
@@ -66,9 +66,7 @@ const Main = () => {
                 setLoading(false);
             }
 
-        }
-
-        submit();
+        })();
     }, [repo, repositoryList]);
 
     const handleDelete = useCallback(repoName => {
@@ -80,7 +78,7 @@ const Main = () => {
       <Container>
           <h1>
               <FaGithub size={ 25 } />
-              Meus repositórios
+              My repositories
           </h1>
 
           <Form onSubmit={ handleSubmit } hasError={ hasError }>

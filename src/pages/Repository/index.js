@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { FaArrowLeft, FaSadCry } from 'react-icons/fa';
+import { FaArrowLeft, FaSmileWink } from 'react-icons/fa';
 
 import LoadingDots from '../../components/LoadingDots';
 import filters from '../../utils/filters';
@@ -104,7 +104,7 @@ const Repository = () => {
                 {issues.length < 1 && (
                     <h2>
                         No issues found
-                        <FaSadCry size={ 25 } />
+                        <FaSmileWink size={ 25 } />
                     </h2>
                 )}
                 {issues.map(issue => {

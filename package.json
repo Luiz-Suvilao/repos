@@ -1,4 +1,5 @@
 {
+  "homepage": "http://Luiz-Suvilao.github.io/repos",
   "name": "repositorios",
   "version": "0.1.0",
   "private": true,
@@ -13,6 +14,8 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -49,6 +52,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.27.1",
+    "gh-pages": "^3.2.3",
     "husky": "^3.0.3",
     "prettier": "^2.4.1"
   }

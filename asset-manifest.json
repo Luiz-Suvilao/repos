@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.js": "/repos/static/js/main.54c25388.chunk.js",
+    "main.js.map": "/repos/static/js/main.54c25388.chunk.js.map",
+    "runtime-main.js": "/repos/static/js/runtime-main.59630108.js",
+    "runtime-main.js.map": "/repos/static/js/runtime-main.59630108.js.map",
+    "static/js/2.09098897.chunk.js": "/repos/static/js/2.09098897.chunk.js",
+    "static/js/2.09098897.chunk.js.map": "/repos/static/js/2.09098897.chunk.js.map",
+    "index.html": "/repos/index.html",
+    "static/js/2.09098897.chunk.js.LICENSE.txt": "/repos/static/js/2.09098897.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.59630108.js",
+    "static/js/2.09098897.chunk.js",
+    "static/js/main.54c25388.chunk.js"
+  ]
+}

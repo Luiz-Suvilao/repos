@@ -9,7 +9,7 @@ export default function ApplicationRoutes() {
     <BrowserRouter>
       <Routes>
         <Route path='/repos' element={<Main />} />
-        <Route path='/repository/:repositoryName' element={<Repository />} />
+        <Route path='/repos/repository/:repositoryName' element={<Repository />} />
       </Routes>
     </BrowserRouter>
   );

@@ -37,6 +37,12 @@ export const Owner = styled.header`
     width: 150px;
     border-radius: 20%;
     margin: 20px 0;
+    transition: transform 0.7s ease-in-out;
+
+    &:hover {
+      cursor: zoom-in;
+      transform: scale(1.2);
+    }
   }
   
   h1 {

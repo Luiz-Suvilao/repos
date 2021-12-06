@@ -9,6 +9,8 @@ export const Container = styled.div `
   margin: 80px auto;
   
   h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-style: italic;
     font-size: 20px;
     display: flex;
     align-items: center;
@@ -92,6 +94,12 @@ export const List = styled.ul`
     
     & + li {
       border-top: 1px solid #eee;
+    }
+    
+    span {
+      font-family: 'Montserrat';
+      font-style: italic;
+      font-weight: bold;
     }
     
     a {

@@ -124,7 +124,7 @@ const Repository = () => {
 
                             <div>
                                 <strong>
-                                    <a href={ html_url }>
+                                    <a rel="noopener noreferrer" target="_blank" href={ html_url }>
                                         { title }
                                     </a>
 
